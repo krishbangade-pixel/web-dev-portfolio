@@ -467,7 +467,7 @@ const Footer = () => (
       <p style={{marginTop: '1rem'}}>Or just write: krishbangade@gmail.com</p>
       
       <form className="footer-form">
-        <div style={{display: 'flex', gap: '2rem'}}>
+        <div className="form-row">
           <div className="form-group" style={{flex: 1}}>
             <label>NAME</label>
             <input type="text" placeholder="Your full name" className="hover-target" />

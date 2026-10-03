@@ -174,7 +174,7 @@ body {
 }
 
 .hero-title {
-  font-size: 7rem;
+  font-size: clamp(3.5rem, 15vw, 7rem);
   font-weight: 800;
   line-height: 0.95;
   margin-bottom: 1.5rem;
@@ -865,3 +865,70 @@ body {
   to { transform: translateY(0); opacity: 1; }
 }
 
+.form-row {
+  display: flex;
+  gap: 2rem;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    padding-top: 15vh;
+  }
+  .hero-content {
+    margin-top: 2rem;
+    z-index: 2;
+  }
+  .hero-image-container {
+    right: auto;
+    bottom: auto;
+    position: relative;
+    width: 80%;
+    aspect-ratio: 1;
+    margin: 0 auto;
+  }
+  .hero-bg-canvas {
+    opacity: 0.3;
+  }
+  
+  .about-sticky {
+    padding: 2rem 1rem;
+  }
+
+  .projects-list {
+    padding-inline: 1rem;
+  }
+  .project-item {
+    width: 85vw;
+  }
+
+  .galeria-book-3d {
+    transform: scale(0.65);
+  }
+  .book-open {
+    transform: translateX(10vw) scale(0.5) !important;
+  }
+
+  .skill-item {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: left;
+    align-items: flex-start;
+  }
+  .skill-item > div:nth-child(2) {
+    margin-left: 0 !important;
+    font-weight: bold;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .footer-content {
+    width: 90%;
+    padding: 2rem;
+  }
+}

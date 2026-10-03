@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef, Suspense, lazy } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import Lenis from 'lenis';
+import 'lenis/dist/lenis.css';
 
 const HeroScene = lazy(() => import('./HeroScene.jsx'));
 
@@ -67,23 +69,8 @@ const RevealCurtain = () => (
 );
 
 const Hero = () => {
-  const [isVisible, setIsVisible] = useState(true);
-  const heroRef = useRef(null);
-
-  useEffect(() => {
-    const element = heroRef.current;
-    if (!element || typeof IntersectionObserver === 'undefined') return;
-
-    const observer = new IntersectionObserver(([entry]) => {
-      setIsVisible(entry.isIntersecting);
-    }, { threshold: 0.01 });
-
-    observer.observe(element);
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <section ref={heroRef} className="hero">
+    <section className="hero">
       <div className="hero-content">
         <h1 className="hero-title">
           Krish <br /> Bangade
@@ -104,11 +91,9 @@ const Hero = () => {
       </div>
 
       <div className="hero-bg-canvas">
-        {isVisible && (
-          <Suspense fallback={null}>
-            <HeroScene />
-          </Suspense>
-        )}
+        <Suspense fallback={null}>
+          <HeroScene />
+        </Suspense>
       </div>
     </section>
   );
@@ -494,6 +479,32 @@ const Footer = () => (
 
 function App() {
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      smoothTouch: false,
+      touchMultiplier: 2,
+      infinite: false,
+    });
+
+    let rafId;
+    function raf(time) {
+      lenis.raf(time);
+      rafId = requestAnimationFrame(raf);
+    }
+    rafId = requestAnimationFrame(raf);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      lenis.destroy();
+    };
+  }, []);
 
   return (
     <>

@@ -574,8 +574,8 @@ body {
 
 .galeria-book-3d {
 	position: relative;
-	width: 250px;
-	height: 350px;
+	width: 320px;
+	height: 450px;
 	perspective: 1000px;
 	transform-style: preserve-3d;
 	display: flex;
@@ -590,13 +590,13 @@ body {
 }
 
 .galeria-book-3d.book-open {
-	--spine-shift: 125px;
+	--spine-shift: 160px;
 }
 
 .galeria-book-3d__item {
 	position: absolute;
-	width: 250px;
-	height: 350px;
+	width: 320px;
+	height: 450px;
 	perspective: 1000px;
 	transform-style: preserve-3d;
 	display: flex;
@@ -638,12 +638,12 @@ body {
 .cv-page {
     width: 100%;
     height: 100%;
-    padding: 1.5rem;
+    padding: 2rem;
     background: #fdfdfd;
     color: #121212;
     font-family: 'Inter', sans-serif;
-    font-size: 0.65rem;
-    line-height: 1.3;
+    font-size: 0.75rem;
+    line-height: 1.4;
     box-sizing: border-box;
     text-align: left;
 }

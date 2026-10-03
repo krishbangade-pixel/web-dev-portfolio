@@ -78,7 +78,8 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: var(--bg-color);
+  background-color: #111;
+  color: #f5f5f5;
   z-index: 9998;
   display: flex;
   align-items: center;
@@ -105,10 +106,26 @@ body {
   height: 100%;
   object-fit: cover;
   opacity: 0;
+  transition: opacity 0.2s ease;
 }
 
 .loader-image.active {
   opacity: 1;
+}
+
+/* One-time bowed curtain reveal */
+.reveal-curtain {
+  position: fixed;
+  z-index: 9997;
+  top: 0;
+  left: -15vw;
+  width: 130vw;
+  height: 115vh;
+  pointer-events: none;
+  background: #111;
+  border-radius: 0 0 50% 50% / 0 0 7% 7%;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 /* Navbar */

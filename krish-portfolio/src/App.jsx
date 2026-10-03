@@ -18,7 +18,7 @@ const Loader = ({ onComplete }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       setImageIndex((prev) => (prev + 1) % IMAGES.length);
-    }, 150); // Fast flashing
+    }, 300); // Keep the image cycle lively without rapid React updates
 
     const timeout = setTimeout(() => {
       clearInterval(interval);
@@ -35,8 +35,8 @@ const Loader = ({ onComplete }) => {
     <motion.div 
       className="loader-container"
       initial={{ opacity: 1 }}
-      exit={{ opacity: 0, y: '-100vh' }}
-      transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.45, ease: 'easeOut' }}
     >
       <span>KRISH</span>
       <div className="loader-image-container">
@@ -55,6 +55,16 @@ const Loader = ({ onComplete }) => {
 };
 
 
+
+const RevealCurtain = () => (
+  <motion.div
+    className="reveal-curtain"
+    initial={{ y: 0 }}
+    animate={{ y: '-115vh' }}
+    transition={{ duration: 1.15, ease: [0.76, 0, 0.24, 1] }}
+    aria-hidden="true"
+  />
+);
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(true);
@@ -79,8 +89,7 @@ const Hero = () => {
           Krish <br /> Bangade
         </h1>
         <p className="hero-subtitle">
-          Brands, products & the art in between. <br />
-          I take the fun seriously.
+         Web Developer
         </p>
         
       </div>
@@ -492,20 +501,21 @@ function App() {
         {loading && <Loader onComplete={() => setLoading(false)} />}
       </AnimatePresence>
 
-      {!loading && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.2 }}
-        >
-          <Hero />
-          <About />
-          <Websites />
-          <Resume />
-          <Skills />
-          <Footer />
-        </motion.div>
-      )}
+      {!loading && <RevealCurtain />}
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: loading ? 0 : 1 }}
+        transition={{ duration: 1, delay: 0.2 }}
+        style={{ pointerEvents: loading ? 'none' : 'auto', height: loading ? '100vh' : 'auto', overflow: loading ? 'hidden' : 'visible' }}
+      >
+        <Hero />
+        <About />
+        <Websites />
+        <Resume />
+        <Skills />
+        <Footer />
+      </motion.div>
     </>
   );
 }

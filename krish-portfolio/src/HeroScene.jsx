@@ -25,7 +25,7 @@ const PlanetModel = () => {
 
   return (
     <Float speed={1.5} rotationIntensity={0.1} floatIntensity={0.5} floatingRange={[-0.1, 0.1]}>
-      <primitive ref={modelRef} object={scene} scale={1.8} position={[0, 1.2, 0]} />
+      <primitive ref={modelRef} object={scene} scale={1.8} position={[0, 3.5, 0]} />
     </Float>
   );
 };

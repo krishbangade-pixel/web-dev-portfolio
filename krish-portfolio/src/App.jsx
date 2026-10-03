@@ -414,10 +414,6 @@ const Resume = () => {
 
   return (
     <section className="resume-section scene" id="resume" onClick={closeAll}>
-      <div className="bg-typography">
-        <span>My</span>
-        <span>Resume</span>
-      </div>
       <div className={`galeria-book-3d ${anyOpen ? 'book-open' : ''}`}>
         {resumePages.map((page, i) => (
           <div 

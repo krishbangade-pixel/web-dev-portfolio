@@ -83,7 +83,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 4rem;
+  font-size: clamp(1.5rem, 6vw, 4rem);
   font-weight: 700;
   letter-spacing: 0.1em;
 }
@@ -541,7 +541,8 @@ body {
 	font-weight: 800;
 	line-height: 0.8;
 	display: flex;
-	justify-content: space-between;
+	flex-direction: column;
+	justify-content: center;
 	align-items: center;
 	padding: 0 5vw;
 	pointer-events: none;
